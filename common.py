@@ -1,7 +1,7 @@
 # implement commonly used functions here
 
 import random
-
+import ui
 
 # generate and return a unique and random string
 # other expectation:
@@ -28,3 +28,10 @@ def generate_random(table):
         if generated not in table:
             break
     return generated
+
+
+def add(table, list_labels):
+    inputs = ui.get_inputs(list_labels, "")
+    table.append(inputs)
+    data_manager.write_table_to_file(table)
+    return table

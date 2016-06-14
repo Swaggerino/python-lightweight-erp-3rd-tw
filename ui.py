@@ -59,8 +59,7 @@ def get_inputs(list_labels, title):
 
     # your code
 
-    return inputs
-
+    pass
 
 # This function needs to print an error message. (example: Error: @message)
 #
