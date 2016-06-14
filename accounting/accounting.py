@@ -24,20 +24,23 @@ common = SourceFileLoader("common", current_file_path + "/../common.py").load_mo
 # user need to go back to the main menu from here
 # we need to reach the default and the special functions of this module from the module menu
 #
-def handle_menu():
-    options = ["(1)Show table",
-               "(2)Add",
-               "(3)Remove",
-               "(4)Update",
-               "(5)Which year max",
-               "(6)Avg amount"]
 
-    ui.print_menu("Menu", options, "(0)Exit program")
+list_labels = ["id", "nr1", "nr2", "nr3", "fd", "ffd"]
+def handle_menu():
+    options = ["Show table",
+               "Add",
+               "Remove",
+               "Update",
+               "Which year max",
+               "Avg amount"]
+
+    ui.print_menu("Menu", options, "Exit program")
+
+table = data_manager.get_table_from_file("accounting/items.csv")
 
 
 def start_module():
     handle_menu()
-    table = data_manager.get_table_from_file("accounting/items.csv")
     back_to_main = 0
     while not back_to_main:
         inputs = ui.get_inputs(["Please:"], "")
@@ -45,7 +48,7 @@ def start_module():
         if option == "1":
             show_table(table)
         elif option == "2":
-            add_table()
+            add(table)
         elif option == "3":
             remove(table, id_)
         elif option == "4":
@@ -66,7 +69,6 @@ def start_module():
 #
 # @table: list of lists
 def show_table(table):
-    ui.print_table(table, )
 
     pass
 
@@ -75,7 +77,8 @@ def show_table(table):
 #
 # @table: list of lists
 def add(table):
-    common.add_table()
+    table = common.add(table, list_labels, "accounting/items.csv")
+    print(table)
     # your code
 
     return table

@@ -1,5 +1,5 @@
 # implement commonly used functions here
-
+import data_manager
 import random
 import ui
 
@@ -30,8 +30,8 @@ def generate_random(table):
     return generated
 
 
-def add(table, list_labels):
+def add(table, list_labels, file_name):
     inputs = ui.get_inputs(list_labels, "")
     table.append(inputs)
-    data_manager.write_table_to_file(table)
+    data_manager.write_table_to_file(table, file_name)
     return table
