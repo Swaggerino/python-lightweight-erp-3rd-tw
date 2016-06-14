@@ -11,13 +11,52 @@
 #
 # @table: list of lists - the table to print out
 # @title_list: list of strings - the head of the table
+
+# title_list = ('id', 'month', 'day', 'year', 'type', 'amount')
+# table = (("kH14Ju#&", 1, 21, 2016, "in", 31),
+#          ("kH38Jm#&", 10, 23, 2016, "out", 40))
+
+
 def print_table(table, title_list):
 
-    # your code
+    all_length = 0
+    col_lengths = []
+    to_print = ""
 
-    pass
+    for elem in title_list:
+        all_length += len(elem) + 2
+        col_lengths.append(len(elem) + 2)
+    for rows in table:
+        i = 0
+        row_length = 0
+        for elem in rows:
+            row_length += len(str(elem)) + 2
+            if len(str(elem)) + 2 > col_lengths[i]:
+                col_lengths[i] = len(str(elem)) + 2
+            i += 1
+        if row_length > all_length:
+            all_length = row_length
 
+    if sum(col_lengths) + 2 * len(title_list) > all_length:
+        all_length = sum(col_lengths)  + 2 * len(title_list)
 
+    to_print += "/{0}\\\n|".format((all_length + (len(title_list) - 1)) * "-")  # /----\
+    i = 0
+    for elem in title_list:  # prints head
+        diff = col_lengths[i] - len(elem)
+        to_print += " {0} |".format(elem + diff * " ")
+        i += 1
+    for lst in table:
+        to_print += "\n|"
+        for elem in col_lengths:  # ---|---|---|
+            to_print += "{0}|".format((elem + 2) * "-")
+        to_print += "\n|"
+        for elem in lst:  # table content | table content |
+            to_print += " {0} |".format(elem)
+    to_print += "\n\\{0}/".format((all_length + (len(title_list) - 1)) * "-")  # \----/
+    print(to_print)
+
+# print_table(table, title_list)
 # This function needs to print result of the special functions
 #
 # @result: string or list or dictionary - result of the special function
@@ -56,8 +95,9 @@ def print_menu(title, list_options, exit_message):
 # @inputs: list of string - list of the received values from the user
 def get_inputs(list_labels, title):
     inputs = []
-
-    # your code
+    print(title)
+    for items in list_labels:
+        inputs.append(input(items + " "))
 
     pass
 
