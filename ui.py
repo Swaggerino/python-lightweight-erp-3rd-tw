@@ -26,13 +26,30 @@ def print_table(table, title_list):
     for elem in title_list:
         all_length += len(elem) + 2
         col_lengths.append(len(elem) + 2)
+    for rows in table:
+        i = 0
+        row_length = 0
+        for elem in rows:
+            row_length += len(str(elem)) + 2
+            if len(str(elem)) + 2 > col_lengths[i]:
+                col_lengths[i] = len(str(elem)) + 2
+            i += 1
+        if row_length > all_length:
+            all_length = row_length
+
+    if sum(col_lengths) + 2 * len(title_list) > all_length:
+        all_length = sum(col_lengths)  + 2 * len(title_list)
+
     to_print += "/{0}\\\n|".format((all_length + (len(title_list) - 1)) * "-")  # /----\
+    i = 0
     for elem in title_list:  # prints head
-        to_print += " {0} |".format(elem)
+        diff = col_lengths[i] - len(elem)
+        to_print += " {0} |".format(elem + diff * " ")
+        i += 1
     for lst in table:
         to_print += "\n|"
-        for elem in title_list:  # ---|---|---|
-            to_print += "{0}|".format((len(elem) + 2) * "-")
+        for elem in col_lengths:  # ---|---|---|
+            to_print += "{0}|".format((elem + 2) * "-")
         to_print += "\n|"
         for elem in lst:  # table content | table content |
             to_print += " {0} |".format(elem)
