@@ -12,11 +12,6 @@
 # @table: list of lists - the table to print out
 # @title_list: list of strings - the head of the table
 
-# title_list = ('id', 'month', 'day', 'year', 'type', 'amount')
-# table = (("kH14Ju#&", 1, 21, 2016, "in", 31),
-#          ("kH38Jm#&", 10, 23, 2016, "out", 40),
-#          ("kH16Ju#&", 2, 27, 2016, "in", 31))
-
 
 def print_table(table, title_list):
 
@@ -60,14 +55,22 @@ def print_table(table, title_list):
     to_print += "\n\\{0}/".format((all_length + (len(title_list) - 1)) * "-")  # \----/
     print(to_print)
 
-# print_table(table, title_list)
+
 # This function needs to print result of the special functions
 #
 # @result: string or list or dictionary - result of the special function
 # @label: string - label of the result
 def print_result(result, label):
+    print(label)
 
-    pass
+    if isinstance(result, dict):
+        for key, val in result.items():
+            print("{0}: {1}".format(key, val))
+    elif isinstance(result, list):
+        for items in result:
+            print(items)
+    else:
+        print(result)
 
 
 # This function needs to generate outputs like this:
@@ -84,11 +87,12 @@ def print_result(result, label):
 # @list_options: list of strings - the options in the menu
 # @exit_message: string - the last option with (0) (example: "Back to main menu")
 def print_menu(title, list_options, exit_message):
-
     print(title)
+    i = 1
     for items in list_options:
-        print(items)
-    print(exit_message)
+        print("({0}) {1}".format(i, items))
+        i += 1
+    print("(0) {0}".format(exit_message))
 
 
 # This function gets a list of inputs from the user by the terminal
@@ -101,7 +105,6 @@ def get_inputs(list_labels, title):
     print(title)
     for items in list_labels:
         inputs.append(input(items + " "))
-
     return inputs
 
 
@@ -109,5 +112,4 @@ def get_inputs(list_labels, title):
 #
 # @message: string - the error message
 def print_error_message(message):
-
     print("Error: " + message)
