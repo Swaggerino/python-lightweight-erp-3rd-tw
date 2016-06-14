@@ -12,6 +12,11 @@
 # @table: list of lists - the table to print out
 # @title_list: list of strings - the head of the table
 
+# title_list = ('id', 'month', 'day', 'year', 'type', 'amount')
+# table = (("kH14Ju#&", 1, 21, 2016, "in", 31),
+#          ("kH38Jm#&", 10, 23, 2016, "out", 40),
+#          ("kH16Ju#&", 2, 27, 2016, "in", 31))
+
 
 def print_table(table, title_list):
 
@@ -55,14 +60,12 @@ def print_table(table, title_list):
     to_print += "\n\\{0}/".format((all_length + (len(title_list) - 1)) * "-")  # \----/
     print(to_print)
 
-
+# print_table(table, title_list)
 # This function needs to print result of the special functions
 #
 # @result: string or list or dictionary - result of the special function
 # @label: string - label of the result
 def print_result(result, label):
-
-    # your code
 
     pass
 
@@ -107,6 +110,4 @@ def get_inputs(list_labels, title):
 # @message: string - the error message
 def print_error_message(message):
 
-    # your code
-
-    pass
+    print("Error: " + message)
