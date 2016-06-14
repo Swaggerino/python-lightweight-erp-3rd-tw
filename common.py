@@ -11,9 +11,20 @@ import random
 # @table: list of list
 # @generated: string - generated random string (unique in the @table)
 def generate_random(table):
+    while True:
+        generated = ''
 
-    generated = ''
-
-    # your code
-
+        letters = "abcdefghijklmnopqrstuvwxyz"
+        numbers = "0123456789"
+        symbols = "!@#$%^&*()?"
+        generated += letters[random.randrange(0, len(letters))]
+        generated += letters[random.randrange(0, len(letters))].upper()
+        generated += numbers[random.randrange(0, len(numbers))]
+        generated += numbers[random.randrange(0, len(numbers))]
+        generated += letters[random.randrange(0, len(letters))].upper()
+        generated += letters[random.randrange(0, len(letters))]
+        generated += symbols[random.randrange(0, len(symbols))]
+        generated += symbols[random.randrange(0, len(symbols))]
+        if generated not in table:
+            break
     return generated
