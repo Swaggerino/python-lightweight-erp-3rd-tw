@@ -17,16 +17,44 @@ data_manager = SourceFileLoader("data_manager", current_file_path + "/../data_ma
 # common module
 common = SourceFileLoader("common", current_file_path + "/../common.py").load_module()
 
+menu_status = 0
+# load table from file
+table = data_manager.get_table_from_file("crm/customers.csv")
+# list of menu options
+menu_options = ["Show customers",
+                "Add customer to the table",
+                "Remove customer from the table",
+                "Update an item in the table",
+                "Get the id of customer with the longest name in the table",
+                "Get the name of the customer with the most subscription"]
 
 # start this module by a module menu like the main menu
 # user need to go back to the main menu from here
 # we need to reach the default and the special functions of this module from the module menu
 #
 def start_module():
-
-    # you code
-
-    pass
+    global menu_status
+    ui.print_menu("Customer Relationship Management (CRM)", menu_options, "Exit program")
+    inputs = ui.get_inputs(["Please enter a number: "], "")
+    option = inputs[0]
+    menu_status = 0
+    while menu_status == 0:
+        if option == "1":
+            show_table(table)
+        elif option == "2":
+            add(table)
+        elif option == "3":
+            remove(table, id_)
+        elif option == "4":
+            update(table, id_)
+        elif option == "5":
+            get_longest_name_id(table)
+        elif option == "6":
+            get_subscribed_emails(table)
+        elif option == "0":
+            menu_status = 1
+        else:
+            raise KeyError("There is no such option.")
 
 
 # print the default table of records from the file
@@ -92,3 +120,7 @@ def get_subscribed_emails(table):
     # your code
 
     pass
+# lista = ("a", "b", "c", "d")
+# file_name = "customers.csv"
+# table = data_manager.get_table_from_file(file_name)
+# ui.print_table(table, lista)
