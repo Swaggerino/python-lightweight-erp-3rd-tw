@@ -83,9 +83,10 @@ def print_result(result, label):
 # @exit_message: string - the last option with (0) (example: "Back to main menu")
 def print_menu(title, list_options, exit_message):
 
-    # your code
-
-    pass
+    print(title)
+    for items in list_options:
+        print(items)
+    print(exit_message)
 
 
 # This function gets a list of inputs from the user by the terminal
