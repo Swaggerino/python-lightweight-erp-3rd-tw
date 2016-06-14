@@ -20,12 +20,42 @@ common = SourceFileLoader("common", current_file_path + "/../common.py").load_mo
 # start this module by a module menu like the main menu
 # user need to go back to the main menu from here
 # we need to reach the default and the special functions of this module from the module menu
-#
+def handle_menu():
+    options = ["Show Table",
+               "Add",
+               "Remove",
+               "Update",
+               "Oldest person",
+               "Closest to the average"]
+
+    ui.print_menu("HR", options, "Return to Main menu")
+
+
 def start_module():
-
-    # you code
-
-    pass
+    table = data_manager.get_table_from_file("hr/persons.csv")
+    back_to_main = 0
+    while not back_to_main:
+        handle_menu()
+        inputs = ui.get_inputs(["Please enter a number: "], "")
+        option = inputs[0]
+        if option == "1":
+            show_table(table)
+        elif option == "2":
+            add(table)
+        elif option == "3":
+            remove(table, id_)
+        elif option == "4":
+            update(table, id_)
+        elif option == "5":
+            get_oldest_person(table)
+        elif option == "6":
+            get_persons_closest_to_average(table)
+        elif option == "0":
+            back_to_main = 1
+        else:
+            print_error_message("There is no such option")
+            break
+        pass
 
 
 # print the default table of records from the file
