@@ -12,10 +12,6 @@
 # @table: list of lists - the table to print out
 # @title_list: list of strings - the head of the table
 
-# title_list = ('id', 'month', 'day', 'year', 'type', 'amount')
-# table = (("kH14Ju#&", 1, 21, 2016, "in", 31),
-#          ("kH38Jm#&", 10, 23, 2016, "out", 40))
-
 
 def print_table(table, title_list):
 
@@ -38,7 +34,7 @@ def print_table(table, title_list):
             all_length = row_length
 
     if sum(col_lengths) + 2 * len(title_list) > all_length:
-        all_length = sum(col_lengths)  + 2 * len(title_list)
+        all_length = sum(col_lengths) + 2 * len(title_list)
 
     to_print += "/{0}\\\n|".format((all_length + (len(title_list) - 1)) * "-")  # /----\
     i = 0
@@ -46,17 +42,20 @@ def print_table(table, title_list):
         diff = col_lengths[i] - len(elem)
         to_print += " {0} |".format(elem + diff * " ")
         i += 1
-    for lst in table:
+    for rows in table:
         to_print += "\n|"
         for elem in col_lengths:  # ---|---|---|
             to_print += "{0}|".format((elem + 2) * "-")
         to_print += "\n|"
-        for elem in lst:  # table content | table content |
-            to_print += " {0} |".format(elem)
+        i = 0
+        for elem in rows:  # table content | table content |
+            diff = col_lengths[i] - len(str(elem))
+            to_print += " {0} |".format(str(elem) + diff * " ")
+            i += 1
     to_print += "\n\\{0}/".format((all_length + (len(title_list) - 1)) * "-")  # \----/
     print(to_print)
 
-# print_table(table, title_list)
+
 # This function needs to print result of the special functions
 #
 # @result: string or list or dictionary - result of the special function
