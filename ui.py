@@ -61,10 +61,16 @@ def print_table(table, title_list):
 # @result: string or list or dictionary - result of the special function
 # @label: string - label of the result
 def print_result(result, label):
+    print(label)
 
-    # your code
-
-    pass
+    if isinstance(result, dict):
+        for key, val in result.items():
+            print("{0}: {1}".format(key, val))
+    elif isinstance(result, list):
+        for items in result:
+            print(items)
+    else:
+        print(result)
 
 
 # This function needs to generate outputs like this:
@@ -81,7 +87,6 @@ def print_result(result, label):
 # @list_options: list of strings - the options in the menu
 # @exit_message: string - the last option with (0) (example: "Back to main menu")
 def print_menu(title, list_options, exit_message):
-
     print(title)
     for items in list_options:
         print(items)
@@ -99,13 +104,11 @@ def get_inputs(list_labels, title):
     for items in list_labels:
         inputs.append(input(items + " "))
 
-    pass
+    return inputs
+
 
 # This function needs to print an error message. (example: Error: @message)
 #
 # @message: string - the error message
 def print_error_message(message):
-
-    # your code
-
-    pass
+    print("Error: " + message)

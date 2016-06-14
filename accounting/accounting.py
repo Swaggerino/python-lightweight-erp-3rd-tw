@@ -10,7 +10,6 @@
 
 # importing everything you need
 import os
-# import main
 from importlib.machinery import SourceFileLoader
 current_file_path = os.path.dirname(os.path.abspath(__file__))
 # User interface module
@@ -19,7 +18,6 @@ ui = SourceFileLoader("ui", current_file_path + "/../ui.py").load_module()
 data_manager = SourceFileLoader("data_manager", current_file_path + "/../data_manager.py").load_module()
 # common module
 common = SourceFileLoader("common", current_file_path + "/../common.py").load_module()
-# main = SourceFileLoader("python-lightweight-erp-3rd-tw", current_file_path + "/../main.py").load_module()
 
 
 # start this module by a module menu like the main menu
@@ -27,41 +25,42 @@ common = SourceFileLoader("common", current_file_path + "/../common.py").load_mo
 # we need to reach the default and the special functions of this module from the module menu
 #
 def handle_menu():
-    options = ["Store manager",
-               "Human resources manager",
-               "Tool manager",
-               "Accounting manager",
-               "Selling manager",
-               "Customer Relationship Management (CRM)"]
+    options = ["(1)Show table",
+               "(2)Add",
+               "(3)Remove",
+               "(4)Update",
+               "(5)Which year max",
+               "(6)Avg amount"]
 
-    ui.print_menu("Main menu", options, "Exit program")
+    ui.print_menu("Menu", options, "(0)Exit program")
 
 
 def start_module():
-    inputs = ui.get_inputs("Please: ", "")
-    option = inputs[0]
-    if option == "1":
-        show_table(table)
-    elif option == "2":
-        add_table()
-    elif option == "3":
-        remove(table, id_)
-    elif option == "4":
-        update(table, id_)
-    elif option == "5":
-        which_year_max(table)
-    elif option == "6":
-        avg_amount(table, year)
-    # elif option == "0":
-    #     # main.main()
-    else:
-        raise KeyError("There is no such option.")
-    # table = data_manager.get_table_from_file("items.csv")
-    # you code
+    handle_menu()
+    table = data_manager.get_table_from_file("accounting/items.csv")
+    back_to_main = 0
+    while not back_to_main:
+        inputs = ui.get_inputs(["Please:"], "")
+        option = inputs[0]
+        if option == "1":
+            show_table(table)
+        elif option == "2":
+            add_table()
+        elif option == "3":
+            remove(table, id_)
+        elif option == "4":
+            update(table, id_)
+        elif option == "5":
+            which_year_max(table)
+        elif option == "6":
+            avg_amount(table, year)
+        elif option == "0":
+            back_to_main = 1
+        else:
+            print_error_message("There is no such option")
 
-    pass
-
-start_module()
+# handle_menu()
+# start_module()
 
 # print the default table of records from the file
 #
