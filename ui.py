@@ -11,13 +11,35 @@
 #
 # @table: list of lists - the table to print out
 # @title_list: list of strings - the head of the table
+
+# title_list = ('id', 'month', 'day', 'year', 'type', 'amount')
+# table = (("kH14Ju#&", 1, 21, 2016, "in", 31),
+#          ("kH38Jm#&", 10, 23, 2016, "out", 40))
+
+
 def print_table(table, title_list):
 
-    # your code
+    all_length = 0
+    col_lengths = []
+    to_print = ""
 
-    pass
+    for elem in title_list:
+        all_length += len(elem) + 2
+        col_lengths.append(len(elem) + 2)
+    to_print += "/{0}\\\n|".format((all_length + (len(title_list) - 1)) * "-")  # /----\
+    for elem in title_list:  # prints head
+        to_print += " {0} |".format(elem)
+    for lst in table:
+        to_print += "\n|"
+        for elem in title_list:  # ---|---|---|
+            to_print += "{0}|".format((len(elem) + 2) * "-")
+        to_print += "\n|"
+        for elem in lst:  # table content | table content |
+            to_print += " {0} |".format(elem)
+    to_print += "\n\\{0}/".format((all_length + (len(title_list) - 1)) * "-")  # \----/
+    print(to_print)
 
-
+# print_table(table, title_list)
 # This function needs to print result of the special functions
 #
 # @result: string or list or dictionary - result of the special function
