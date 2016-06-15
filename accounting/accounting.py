@@ -84,12 +84,6 @@ def add(table):
     # # your code
 
     return table
-def add(table, list_labels, file_name):
-    id_ = [generate_random(table)]
-    inputs = (id_ + ui.get_inputs(list_labels, ""))
-    table.append(inputs)
-    data_manager.write_table_to_file(file_name, table)
-    return table
 
 # Remove the record having the id @id_ from the @list, than return @table
 #
