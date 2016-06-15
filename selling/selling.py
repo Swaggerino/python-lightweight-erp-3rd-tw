@@ -89,10 +89,10 @@ def add(table):
 #
 # @table: list of lists
 # @id_: string
+
+
 def remove(table, id_):
-
-    # your code
-
+    id_index = table.index(id_)
     return table
 
 
