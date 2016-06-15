@@ -49,6 +49,7 @@ def start_module():
             update(table, id_)
         elif option == "5":
             get_longest_name_id(table)
+            ui.print_result(get_longest_name_id(table), "The People with the longest name is/are: ")
         elif option == "6":
             get_subscribed_emails(table)
         elif option == "0":
@@ -107,10 +108,25 @@ def update(table, id_):
 # the question: What is the id of the customer with the longest name ?
 # return type: string (id) - if there are more than one longest name, return the first of descending alphabetical order
 def get_longest_name_id(table):
-
-    # your code
-
-    pass
+    name = []
+    id_ = []
+    for row in table:
+        id_.append(row[0])
+        name.append(row[1])
+    longest = None
+    for element in name:
+        if longest is None:
+            longest = len(element)
+        if len(element) > longest:
+            longest = len(element)
+    final = []
+    i = 0
+    for element in name:
+        if longest == len(element):
+            final.append(id_[i])
+        i += 1
+    # ui.print_result(final, " text ")
+    return final
 
 
 # the question: Which customers has subscribed to the newsletter?
