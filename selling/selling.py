@@ -51,6 +51,7 @@ def start_module():
 
 list_labels = ["id", "name", "n1", "n2", "n3", "year"]
 
+
 def handle_menu():
     options = ["Show table",
                "Add",
@@ -63,9 +64,12 @@ def handle_menu():
 
 table = data_manager.get_table_from_file("selling/sellings.csv")
 
+
 # print the default table of records from the file
 #
 # @table: list of lists
+
+
 def show_table(table):
     ui.print_table(table, list_label)
     pass
@@ -74,10 +78,10 @@ def show_table(table):
 # Ask a new record as an input from the user than add it to @table, than return @table
 #
 # @table: list of lists
+
+
 def add(table):
-
-    # your code
-
+    table = common.add(table, list_labels, "selling/sellingss.csv")
     return table
 
 
