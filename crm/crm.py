@@ -54,7 +54,10 @@ def start_module():
             remove(table, id_)
             break
         elif option == "4":
-            common.update(table, update_labels, ui.get_inputs(id_list, ""))
+            id_input = ui.get_inputs(id_list, "")
+            updated_table = []
+            updated_table = common.update(table, update_labels, id_input[0])
+            data_manager.write_table_to_file(file_name, updated_table)
             break
         elif option == "5":
             get_longest_name_id(table)
