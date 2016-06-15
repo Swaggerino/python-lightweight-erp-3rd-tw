@@ -56,3 +56,12 @@ def update(table, list_labels, id_):
     print(table[id])
     #data_manager.write_table_to_file(file_name, table)
     return table
+
+
+def remove(table, id_):
+    def remove(table, id_):
+        for i in range(len(table)):
+            if table[i][0] == id_:
+                del table[i]
+
+        return table
