@@ -89,13 +89,15 @@ def add(table):
 #
 # @table: list of lists
 # @id_: string
-def remove(table, id_):
-    id_index = table.index(id_)
 
-    # table.remove(row[range(0, len(title_list))])
-    # your code
 
-    return table
+# def remove(table, id_):
+#     id_index = table.index(id_)
+#
+#     # table.remove(row[range(0, len(title_list))])
+#     # your code
+#
+#     return table
 
 
 # Update the record in @table having the id @id_ by asking the new data from the user,
