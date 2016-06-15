@@ -30,7 +30,7 @@ def start_module():
     handle_menu()
     back_to_main = 0
     while not back_to_main:
-        inputs = ui.get_inputs(["Please:"], "")
+        inputs = ui.get_inputs(["Enter a number:"], "")
         option = inputs[0]
         if option == "1":
             show_table(table)
@@ -48,7 +48,7 @@ def start_module():
             back_to_main = 1
         else:
             print_error_message("There is no such option")
-    pass
+
 
 # list_labels = ["id", "title", "price", "month", "day", "year"]
 
@@ -72,7 +72,6 @@ def handle_menu():
 
 def show_table(table):
     ui.print_table(table, list_label)
-    pass
 
 
 # Ask a new record as an input from the user than add it to @table, than return @table
