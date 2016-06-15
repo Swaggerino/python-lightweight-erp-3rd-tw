@@ -32,6 +32,8 @@ menu_options = ["Show customers",
 # user need to go back to the main menu from here
 # we need to reach the default and the special functions of this module from the module menu
 #
+
+
 def start_module():
     global menu_status
     ui.print_menu("Customer Relationship Management (CRM)", menu_options, "Exit program")
@@ -102,7 +104,6 @@ def update(table, id_):
 
 # special functions:
 # ------------------
-
 
 # the question: What is the id of the customer with the longest name ?
 # return type: string (id) - if there are more than one longest name, return the first of descending alphabetical order
