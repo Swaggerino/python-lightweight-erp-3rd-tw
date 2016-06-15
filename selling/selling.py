@@ -26,29 +26,62 @@ common = SourceFileLoader("common", current_file_path + "/../common.py").load_mo
 # we need to reach the default and the special functions of this module from the module menu
 #
 def start_module():
-
-    # you code
-
+    table = data_manager.get_table_from_file("selling/sellings.csv")
+    handle_menu()
+    back_to_main = 0
+    while not back_to_main:
+        inputs = ui.get_inputs(["Please:"], "")
+        option = inputs[0]
+        if option == "1":
+            show_table(table)
+        elif option == "2":
+            add(table)
+        elif option == "3":
+            remove(table, id_)
+        elif option == "4":
+            update(table, id_)
+        elif option == "5":
+            get_lowest_price_item_id(table)
+        elif option == "6":
+            get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to)
+        elif option == "0":
+            back_to_main = 1
+        else:
+            print_error_message("There is no such option")
     pass
+
+# list_labels = ["id", "title", "price", "month", "day", "year"]
+
+
+def handle_menu():
+    options = ["Show table",
+               "Add",
+               "Remove",
+               "Update",
+               "Get lowest prite item id",
+               "Get items sold between"]
+
+    ui.print_menu("Menu", options, "Back to main menu")
+
 
 
 # print the default table of records from the file
 #
 # @table: list of lists
+
+
 def show_table(table):
-
-    # your code
-
+    ui.print_table(table, list_label)
     pass
 
 
 # Ask a new record as an input from the user than add it to @table, than return @table
 #
 # @table: list of lists
+
+
 def add(table):
-
-    # your code
-
+    table = common.add(table, list_labels, "selling/sellingss.csv")
     return table
 
 
@@ -56,10 +89,10 @@ def add(table):
 #
 # @table: list of lists
 # @id_: string
+
+
 def remove(table, id_):
-
-    # your code
-
+    id_index = table.index(id_)
     return table
 
 
@@ -82,10 +115,25 @@ def update(table, id_):
 # return type: string (id)
 # if there are more than one with the lowest price, return the first of descending alphabetical order
 def get_lowest_price_item_id(table):
+    price = []
+    i_d = []
+    for i in table:
+        price.append(i[2])
+        i_d.append(i[0])
+    mini = None
+    for i in price:
+        if mini is None:
+            mini = i
+        elif mini > i:
+            mini = i
+    final = []
+    i = 0
+    for e in price:
+        if mini == e:
+            final.append(i_d[i])
+        i += 1
+    ui.print_result(final, "The id of the lowest priced items : ")
 
-    # your code
-
-    pass
 
 
 # the question: Which items are sold between two given dates ? (from_date < birth_date < to_date)

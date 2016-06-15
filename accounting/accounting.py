@@ -25,7 +25,6 @@ common = SourceFileLoader("common", current_file_path + "/../common.py").load_mo
 # we need to reach the default and the special functions of this module from the module menu
 #
 
-list_labels = ["id", "nr1", "nr2", "nr3", "fd", "ffd"]
 def handle_menu():
     options = ["Show table",
                "Add",
@@ -34,9 +33,10 @@ def handle_menu():
                "Which year max",
                "Avg amount"]
 
-    ui.print_menu("Menu", options, "Exit program")
+    ui.print_menu("Menu", options, "Back to main menu")
 
 table = data_manager.get_table_from_file("accounting/items.csv")
+list_labels = ["nr1", "nr2", "nr3", "fd", "ffd"]
 
 
 def start_module():
@@ -68,8 +68,10 @@ def start_module():
 # print the default table of records from the file
 #
 # @table: list of lists
-def show_table(table):
 
+
+def show_table(table):
+    ui.print_table(table, list_label)
     pass
 
 
@@ -78,18 +80,19 @@ def show_table(table):
 # @table: list of lists
 def add(table):
     table = common.add(table, list_labels, "accounting/items.csv")
-    print(table)
-    # your code
+    # print(table)
+    # # your code
 
     return table
-
 
 # Remove the record having the id @id_ from the @list, than return @table
 #
 # @table: list of lists
 # @id_: string
 def remove(table, id_):
+    id_index = table.index(id_)
 
+    # table.remove(row[range(0, len(title_list))])
     # your code
 
     return table
