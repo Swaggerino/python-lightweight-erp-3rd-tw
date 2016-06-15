@@ -26,6 +26,7 @@ common = SourceFileLoader("common", current_file_path + "/../common.py").load_mo
 # we need to reach the default and the special functions of this module from the module menu
 #
 def start_module():
+    table = data_manager.get_table_from_file("selling/sellings.csv")
     handle_menu()
     back_to_main = 0
     while not back_to_main:
@@ -49,7 +50,7 @@ def start_module():
             print_error_message("There is no such option")
     pass
 
-list_labels = ["id", "name", "n1", "n2", "n3", "year"]
+# list_labels = ["id", "title", "price", "month", "day", "year"]
 
 
 def handle_menu():
@@ -62,7 +63,6 @@ def handle_menu():
 
     ui.print_menu("Menu", options, "Back to main menu")
 
-table = data_manager.get_table_from_file("selling/sellings.csv")
 
 
 # print the default table of records from the file
@@ -115,10 +115,25 @@ def update(table, id_):
 # return type: string (id)
 # if there are more than one with the lowest price, return the first of descending alphabetical order
 def get_lowest_price_item_id(table):
+    price = []
+    i_d = []
+    for i in table:
+        price.append(i[2])
+        i_d.append(i[0])
+    mini = None
+    for i in price:
+        if mini is None:
+            mini = i
+        elif mini > i:
+            mini = i
+    final = []
+    i = 0
+    for e in price:
+        if mini == e:
+            final.append(i_d[i])
+        i += 1
+    ui.print_result(final, "The id of the lowest priced items : ")
 
-    # your code
-
-    pass
 
 
 # the question: Which items are sold between two given dates ? (from_date < birth_date < to_date)
