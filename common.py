@@ -53,6 +53,4 @@ def update(table, list_labels, id_):
         if table[id][0] == inputs[0]:
             table[id] = inputs
             break
-    print(table[id])
-    #data_manager.write_table_to_file(file_name, table)
     return table
