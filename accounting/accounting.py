@@ -24,20 +24,54 @@ common = SourceFileLoader("common", current_file_path + "/../common.py").load_mo
 # user need to go back to the main menu from here
 # we need to reach the default and the special functions of this module from the module menu
 #
+
+def handle_menu():
+    options = ["Show table",
+               "Add",
+               "Remove",
+               "Update",
+               "Which year max",
+               "Avg amount"]
+
+    ui.print_menu("Menu", options, "Back to main menu")
+
+table = data_manager.get_table_from_file("accounting/items.csv")
+list_labels = ["nr1", "nr2", "nr3", "fd", "ffd"]
+
+
 def start_module():
+    handle_menu()
+    back_to_main = 0
+    while not back_to_main:
+        inputs = ui.get_inputs(["Please:"], "")
+        option = inputs[0]
+        if option == "1":
+            show_table(table)
+        elif option == "2":
+            add(table)
+        elif option == "3":
+            remove(table, id_)
+        elif option == "4":
+            update(table, id_)
+        elif option == "5":
+            which_year_max(table)
+        elif option == "6":
+            avg_amount(table, year)
+        elif option == "0":
+            back_to_main = 1
+        else:
+            print_error_message("There is no such option")
 
-    # you code
-
-    pass
-
+# handle_menu()
+# start_module()
 
 # print the default table of records from the file
 #
 # @table: list of lists
+
+
 def show_table(table):
-
-    # your code
-
+    ui.print_table(table, list_label)
     pass
 
 
@@ -45,18 +79,20 @@ def show_table(table):
 #
 # @table: list of lists
 def add(table):
-
-    # your code
+    table = common.add(table, list_labels, "accounting/items.csv")
+    # print(table)
+    # # your code
 
     return table
-
 
 # Remove the record having the id @id_ from the @list, than return @table
 #
 # @table: list of lists
 # @id_: string
 def remove(table, id_):
+    id_index = table.index(id_)
 
+    # table.remove(row[range(0, len(title_list))])
     # your code
 
     return table
