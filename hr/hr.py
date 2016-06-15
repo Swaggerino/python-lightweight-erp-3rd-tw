@@ -20,6 +20,9 @@ common = SourceFileLoader("common", current_file_path + "/../common.py").load_mo
 # start this module by a module menu like the main menu
 # user need to go back to the main menu from here
 # we need to reach the default and the special functions of this module from the module menu
+list1 = ""
+
+
 def handle_menu():
     options = ["Show Table",
                "Add",
@@ -61,19 +64,18 @@ def start_module():
 #
 # @table: list of lists
 def show_table(table):
-
-    # your code
-
+    list1 = ['id', 'name', 'birth_date']
+    ui.print_table(table, list1)
+    start_module()
     pass
-
 
 # Ask a new record as an input from the user than add it to @table, than return @table
 #
 # @table: list of lists
+
+
 def add(table):
-
-    # your code
-
+    common.add_to_table(table, "hr/persons.csv")
     return table
 
 
@@ -82,9 +84,7 @@ def add(table):
 # @table: list of lists
 # @id_: string
 def remove(table, id_):
-
-    # your code
-
+    common.remove_form_table(table, "hr/persons.csv", id_)
     return table
 
 
@@ -94,9 +94,7 @@ def remove(table, id_):
 # @table: list of lists
 # @id_: string
 def update(table, id_):
-
-    # your code
-
+    common.update_the_table(table, "hr/persons.csv", id_)
     return table
 
 
