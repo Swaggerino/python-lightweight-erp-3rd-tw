@@ -41,7 +41,7 @@ def start_module():
         elif option == "4":
             update(table, id_)
         elif option == "5":
-            get_lowest_price_item_id(table)
+            ui.print_result(get_lowest_price_item_id(table), "The id of the lowest priced items : ")
         elif option == "6":
             get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to)
         elif option == "0":
@@ -132,8 +132,7 @@ def get_lowest_price_item_id(table):
         if mini == e:
             final.append(i_d[i])
         i += 1
-    ui.print_result(final, "The id of the lowest priced items : ")
-
+    return final
 
 
 # the question: Which items are sold between two given dates ? (from_date < birth_date < to_date)
