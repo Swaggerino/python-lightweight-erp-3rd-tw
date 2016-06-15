@@ -108,8 +108,10 @@ def update(table, id_):
 def get_oldest_person(table):
     name = []
     year = []
-    mini = 2016
+    mini = None
     for row in table:
+        if mini is None:
+            mini = int(row[2])
         name.append(row[1])
         year.append(int(row[2]))
         if mini > int(row[2]):
@@ -145,8 +147,10 @@ def get_persons_closest_to_average(table):
             difference.append(element - average)
         else:
             difference.append(0)
-    mini = 100
+    mini = None
     for element in difference:
+        if mini is None:
+            mini = element
         if mini > element:
             mini = element
     i = 0
