@@ -33,8 +33,11 @@ def print_table(table, title_list):
         if row_length > all_length:
             all_length = row_length
 
-    if sum(col_lengths) + 2 * len(title_list) > all_length:
-        all_length = sum(col_lengths) + 2 * len(title_list)
+    summed_row = 0
+    for items in col_lengths:
+        summed_row += items + 2
+    if summed_row > all_length:
+        all_length = summed_row
 
     to_print += "/{0}\\\n|".format((all_length + (len(title_list) - 1)) * "-")  # /----\
     i = 0
