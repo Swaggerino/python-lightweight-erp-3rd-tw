@@ -41,3 +41,27 @@ def add(table, list_labels, file_name):
     table.append(inputs)
     data_manager.write_table_to_file(file_name, table)
     return table
+
+
+def update(table, list_labels, id_):
+    new_data = []
+    updated_id = 0
+    inputs = ui.get_inputs(list_labels, "")
+    table_len = len(table)
+    inputs.insert(0, id_)
+    for id in range(table_len):
+        if table[id][0] == inputs[0]:
+            table[id] = inputs
+            break
+    print(table[id])
+    #data_manager.write_table_to_file(file_name, table)
+    return table
+
+
+def remove(table, id_):
+    def remove(table, id_):
+        for i in range(len(table)):
+            if table[i][0] == id_:
+                del table[i]
+
+        return table
