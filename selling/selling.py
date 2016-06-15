@@ -26,11 +26,42 @@ common = SourceFileLoader("common", current_file_path + "/../common.py").load_mo
 # we need to reach the default and the special functions of this module from the module menu
 #
 def start_module():
-
-    # you code
-
+    handle_menu()
+    back_to_main = 0
+    while not back_to_main:
+        inputs = ui.get_inputs(["Please:"], "")
+        option = inputs[0]
+        if option == "1":
+            show_table(table)
+        elif option == "2":
+            add(table)
+        elif option == "3":
+            remove(table, id_)
+        elif option == "4":
+            update(table, id_)
+        elif option == "5":
+            get_lowest_price_item_id(table)
+        elif option == "6":
+            get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to)
+        elif option == "0":
+            back_to_main = 1
+        else:
+            print_error_message("There is no such option")
     pass
 
+list_labels = ["id", "name", "n1", "n2", "n3", "year"]
+
+def handle_menu():
+    options = ["Show table",
+               "Add",
+               "Remove",
+               "Update",
+               "Get lowest prite item id",
+               "Get items sold between"]
+
+    ui.print_menu("Menu", options, "Back to main menu")
+
+table = data_manager.get_table_from_file("selling/sellings.csv")
 
 # print the default table of records from the file
 #
