@@ -67,9 +67,7 @@ table = data_manager.get_table_from_file("selling/sellings.csv")
 #
 # @table: list of lists
 def show_table(table):
-
-    # your code
-
+    ui.print_table(table, list_label)
     pass
 
 
