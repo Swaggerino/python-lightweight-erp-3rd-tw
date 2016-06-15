@@ -16,10 +16,10 @@ ui = SourceFileLoader("ui", current_file_path + "/../ui.py").load_module()
 data_manager = SourceFileLoader("data_manager", current_file_path + "/../data_manager.py").load_module()
 # common module
 common = SourceFileLoader("common", current_file_path + "/../common.py").load_module()
-
+file_name = "crm/customers.csv"
 menu_status = 0
 # load table from file
-table = data_manager.get_table_from_file("crm/customers.csv")
+table = data_manager.get_table_from_file(file_name)
 # list of menu options
 menu_options = ["Show customers",
                 "Add customer to the table",
@@ -27,35 +27,50 @@ menu_options = ["Show customers",
                 "Update an item in the table",
                 "Get the id of customer with the longest name in the table",
                 "Get the name of the customer with the most subscription"]
+list_labels = ["id", "name", "email", "subscribed"]
+update_labels = ["name", "email", "subscribed"]
+id_list = ["id"]
 
 # start this module by a module menu like the main menu
 # user need to go back to the main menu from here
 # we need to reach the default and the special functions of this module from the module menu
 #
+
+
 def start_module():
     global menu_status
     ui.print_menu("Customer Relationship Management (CRM)", menu_options, "Exit program")
     inputs = ui.get_inputs(["Please enter a number: "], "")
     option = inputs[0]
     menu_status = 0
-    while menu_status == 0:
+    while True:
         if option == "1":
             show_table(table)
+            break
         elif option == "2":
-            add(table)
+            common.add(table, list_labels, file_name)
+            break
         elif option == "3":
             remove(table, id_)
+            break
         elif option == "4":
-            update(table, id_)
+            id_input = ui.get_inputs(id_list, "")
+            updated_table = []
+            updated_table = common.update(table, update_labels, id_input[0])
+            data_manager.write_table_to_file(file_name, updated_table)
+            break
         elif option == "5":
             get_longest_name_id(table)
             ui.print_result(get_longest_name_id(table), "The People with the longest name is/are: ")
+            break
         elif option == "6":
             get_subscribed_emails(table)
+            break
         elif option == "0":
-            menu_status = 1
+            break
         else:
             raise KeyError("There is no such option.")
+        start_module()
 
 
 # print the default table of records from the file
@@ -96,14 +111,11 @@ def remove(table, id_):
 # @id_: string
 def update(table, id_):
 
-    # your code
-
     return table
 
 
 # special functions:
 # ------------------
-
 
 # the question: What is the id of the customer with the longest name ?
 # return type: string (id) - if there are more than one longest name, return the first of descending alphabetical order
@@ -136,7 +148,3 @@ def get_subscribed_emails(table):
     # your code
 
     pass
-# lista = ("a", "b", "c", "d")
-# file_name = "customers.csv"
-# table = data_manager.get_table_from_file(file_name)
-# ui.print_table(table, lista)
