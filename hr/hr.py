@@ -55,7 +55,6 @@ def start_module():
         else:
             print_error_message("There is no such option")
             break
-        pass
 
 
 # print the default table of records from the file
@@ -107,16 +106,52 @@ def update(table, id_):
 # the question: Who is the oldest person ?
 # return type: list of strings (name or names if there are two more with the same value)
 def get_oldest_person(table):
-
-    # your code
-
-    pass
+    name = []
+    year = []
+    mini = 2016
+    for row in table:
+        name.append(row[1])
+        year.append(int(row[2]))
+        if mini > int(row[2]):
+            mini = int(row[2])
+    final = []
+    i = 0
+    for element in year:
+        if element == mini:
+            final.append(name[i])
+        i += 1
+    ui.print_result(final, "The oldest people is/are : ")
 
 
 # the question: Who is the closest to the average age ?
 # return type: list of strings (name or names if there are two more with the same value)
 def get_persons_closest_to_average(table):
-
-    # your code
-
-    pass
+    name = []
+    year = []
+    total = 0
+    nr_people = 0
+    for row in table:
+        nr_people += 1
+        total = total + int(row[2])
+        name.append(row[1])
+        year.append(int(row[2]))
+    average = total/nr_people
+    final = []
+    difference = []
+    for element in year:
+        if element < average:
+            difference.append(average - element)
+        elif element > average:
+            difference.append(element - average)
+        else:
+            difference.append(0)
+    mini = 100
+    for element in difference:
+        if mini > element:
+            mini = element
+    i = 0
+    for elem in difference:
+        if mini == elem:
+            final.append(name[i])
+        i += 1
+    ui.print_result(final, "The people closest to the average age is/are: ")
