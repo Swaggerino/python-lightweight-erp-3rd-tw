@@ -64,14 +64,12 @@ def handle_menu():
     ui.print_menu("Menu", options, "Back to main menu")
 
 
-
 # print the default table of records from the file
 #
 # @table: list of lists
 
 
-def show_table(table):
-    ui.print_table(table, list_label)
+# def show_table(table):
 
 
 # Ask a new record as an input from the user than add it to @table, than return @table
@@ -90,9 +88,8 @@ def add(table):
 # @id_: string
 
 
-def remove(table, id_):
-    id_index = table.index(id_)
-    return table
+# def remove(table, id_):
+#     return table
 
 
 # Update the record in @table having the id @id_ by asking the new data from the user,
@@ -100,11 +97,11 @@ def remove(table, id_):
 #
 # @table: list of lists
 # @id_: string
-def update(table, id_):
-
-    # your code
-
-    return table
+# def update(table, id_):
+#
+#     # your code
+#
+#     return table
 
 
 # special functions:
@@ -136,8 +133,6 @@ def get_lowest_price_item_id(table):
 
 # the question: Which items are sold between two given dates ? (from_date < birth_date < to_date)
 # return type: list of lists (the filtered table)
-def get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to):
+# def get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to):
 
     # your code
-
-    pass
