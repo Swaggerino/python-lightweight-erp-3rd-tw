@@ -54,3 +54,12 @@ def update(table, list_labels, id_):
             table[id] = inputs
             break
     return table
+
+
+def remove(table, id_):
+    def remove(table, id_):
+        for i in range(len(table)):
+            if table[i][0] == id_:
+                del table[i]
+
+        return table

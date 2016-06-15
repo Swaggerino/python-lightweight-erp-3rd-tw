@@ -54,7 +54,8 @@ def start_module():
         elif option == "4":
             update(table, id_)
         elif option == "5":
-            which_year_max(table)
+            ui.print_result(which_year_max(table), "The most profit was in: ")
+
         elif option == "6":
             avg_amount(table, year)
         elif option == "0":
@@ -116,11 +117,47 @@ def update(table, id_):
 # the question: Which year has the highest profit? (profit=in-out)
 # return the answer (number)
 def which_year_max(table):
+    year = []
+    types = []
+    amount = []
+    i = 0
+    for row in table:
+        if i != 0:
+            if row[3] == year[i - 1]:
+                if row[4] == "in":
+                    amount[i-1] += row[5]
+                elif row[4] == "out":
+                    amount[i-1] -= row[5]
+        elif i == 0:
+            year.append(int(row[3]))
+            # types.append(str(row[4]))
+            if row[4] == "in":
+                amount.append(int(row[5]))
+            elif row[4] == "out":
+                amount.append(0 - (int(row[5])))
+        else:
+            year.append(int(row[3]))
+            # types.append(str(row[4]))
+            if row[4] == "in":
+                amount.append(int(row[5]))
+            elif row[4] == "out":
+                amount.append(0 - (int(row[5])))
+            i += 1
 
-    # your code
+    max_profit = None
+    for items in amount:
+        if max_profit is None:
+            max_profit = items
+        elif max_profit < items:
+            max_profit = items
 
-    pass
+    i = 0
+    for items in amount:
+        if items == max_profit:
+            final = year[i]
+        i += 1
 
+    return final
 
 # the question: What is the average (per item) profit in a given year? [(profit)/(items count) ]
 # return the answer (number)
