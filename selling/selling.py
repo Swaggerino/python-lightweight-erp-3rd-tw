@@ -133,6 +133,7 @@ def get_lowest_price_item_id(table):
 
 # the question: Which items are sold between two given dates ? (from_date < birth_date < to_date)
 # return type: list of lists (the filtered table)
-# def get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to):
+def get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to):
 
     # your code
+    pass
