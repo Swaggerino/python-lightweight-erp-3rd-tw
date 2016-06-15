@@ -47,9 +47,9 @@ def start_module():
         elif option == "4":
             update(table, id_)
         elif option == "5":
-            get_oldest_person(table)
+            ui.print_result(get_oldest_person(table), "The oldest people is/are : ")
         elif option == "6":
-            get_persons_closest_to_average(table)
+            ui.print_result(get_persons_closest_to_average(table), "The people closest to the average age is/are: ")
         elif option == "0":
             back_to_main = 1
         else:
@@ -122,7 +122,8 @@ def get_oldest_person(table):
         if element == mini:
             final.append(name[i])
         i += 1
-    ui.print_result(final, "The oldest people is/are : ")
+    # ui.print_result(final, "The oldest people is/are : ")
+    return final
 
 
 # the question: Who is the closest to the average age ?
@@ -158,4 +159,5 @@ def get_persons_closest_to_average(table):
         if mini == elem:
             final.append(name[i])
         i += 1
-    ui.print_result(final, "The people closest to the average age is/are: ")
+    # ui.print_result(final, "The people closest to the average age is/are: ")
+    return final
