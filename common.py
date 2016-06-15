@@ -31,7 +31,8 @@ def generate_random(table):
 
 
 def add(table, list_labels, file_name):
-    inputs = ui.get_inputs(list_labels, "")
+    id_ = [generate_random(table)]
+    inputs = (id_ + ui.get_inputs(list_labels, ""))
     table.append(inputs)
-    data_manager.write_table_to_file(table, file_name)
+    data_manager.write_table_to_file(file_name, table)
     return table
